@@ -1,0 +1,57 @@
+@import '../../styles/variables';
+
+.container {
+  width: 100%;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  color: $pDarkBlue;
+  font-size: 30px;
+  font-family: 'Baloo Chettan 2', cursive;
+}
+
+.accountInfoWrapper {
+  flex-direction: row;
+  margin: 100px 50px 30px;
+  width: 100%;
+}
+
+.col {
+  min-width: 50%;
+  border-right: 1px solid $pDarkBlue;
+}
+
+.taskTitle {
+  width: 100%;
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Raleway';
+}
+
+.dataLabel {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.taskData {
+  width: 90%;
+  margin: 5px 30px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  flex-direction: row;
+}
+
+.actionsWrapper {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.actionsWrapper * {
+  color: $pGold;
+  font-weight: bold;
+}

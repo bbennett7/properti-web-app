@@ -9,7 +9,8 @@ import { getTasksByUserId } from './api/task';
 class App extends PureComponent {
   state = {
     user: null,
-    tasks: []
+    tasks: [],
+    loading: true
   };
 
   componentDidMount = () => {
@@ -19,7 +20,8 @@ class App extends PureComponent {
       if (!user) {
         return this.setState({
           user: null,
-          tasks: []
+          tasks: [],
+          loading: false
         });
       }
 
@@ -29,12 +31,14 @@ class App extends PureComponent {
 
         return this.setState({
           user: userData.data,
-          tasks: tasksData.data
+          tasks: tasksData.data,
+          loading: false
         });
       } catch (err) {
         return this.setState({
           user: null,
-          tasks: []
+          tasks: [],
+          loading: false
         });
       }
     });

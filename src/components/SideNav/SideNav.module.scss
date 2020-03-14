@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+
+@media (max-width: 1200px) {
+  .container {
+    min-width: 200px;
+    width: 200px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+
+  .logo {
+    height: 60px;
+  }
+
+  .logoWrapper {
+    margin-bottom: 45px;
+  }
+
+  .menuItem {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .container {
+    min-width: 250px;
+    width: 250px;
+  }
+
+  .header {
+    font-size: 21.88px;
+  }
+
+  .logo {
+    height: 70px;
+  }
+
+  .logoWrapper {
+    margin-bottom: 60px;
+  }
+
+  .menu {
+    margin: 0px 10px;
+  }
+
+  .menuItem {
+    font-size: 14px;
+    margin-bottom: 32.52px;
+  }
+}
+
+.container {
+  min-height: 100vh;
+  background: $pGold;
+}
+
+.logoWrapper {
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.logo {
+  width: auto;
+  margin-right: 15px;
+}
+
+.header {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 900;
+  color: $pGold;
+}
+
+menu {
+  height: auto;
+}
+
+.menuItem {
+  flex-direction: row;
+  margin-left: 30.75px;
+  align-items: center;
+  font-family: 'Raleway';
+  font-weight: normal;
+  color: $pDarkBlue;
+  font-weight: bold;
+}
+
+.menu a {
+  text-decoration: none;
+}
+
+.icon {
+  margin-right: 20.75px;
+  height: 32px;
+  width: 32px;
+  stroke: $pDarkBlue;
+}
+
+.icon * {
+  align-items: center;
+  stroke: $pDarkBlue;
+  height: 32px;
+  width: 32px;
+}

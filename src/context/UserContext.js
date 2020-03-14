@@ -1,8 +1,10 @@
 import React from 'react';
 
 const UserContext = React.createContext({
-  user: {},
-  updateUser: () => {}
+  user: null,
+  tasks: [],
+  updateUser: () => {},
+  updateTasks: () => {}
 });
 
 export default UserContext;

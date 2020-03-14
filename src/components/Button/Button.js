@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
-const Button = ({ path, text, bgColor }) => {
+const Button = ({ path, text, bgColor, onClick }) => {
   const bgClass = styles[bgColor];
 
   if (path) {
@@ -14,7 +14,11 @@ const Button = ({ path, text, bgColor }) => {
     );
   }
 
-  return <button className={`${bgClass} ${styles.button}`}>{text}</button>;
+  return (
+    <button className={`${bgClass} ${styles.button}`} onClick={onClick || null}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

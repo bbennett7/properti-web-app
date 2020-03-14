@@ -1,0 +1,96 @@
+@import '../../styles/variables';
+
+@media (max-width: 500px) {
+  .authContainer {
+    background: $pDarkBlue;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100vw;
+  }
+
+  .wrapper {
+    align-items: center;
+    margin: auto;
+  }
+
+  .imageContainer, .landingImage {
+    display: none;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 1200px) {
+  .wrapper {
+    margin: auto;
+  }
+
+  .imageContainer {
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .landingImage {
+    object-fit: cover;
+    min-height: 100vh;
+    object-position: 90% 0;
+  }
+
+  .authContainer {
+    background: $pOffWhite;
+    min-width: 375px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .wrapper {
+    margin: auto;
+  }
+
+  .imageContainer {
+    min-height: 100vh;
+    min-width: 70vw;
+    overflow: hidden;
+  }
+  
+  .landingImage {
+    object-fit: cover;
+    min-height: 100vh;
+  }
+
+  .authContainer {
+    background: $pOffWhite;
+    max-width: 375px;
+    width: 100%;
+  }
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+  background: $pOffWhite;
+}
+
+.authContainer {
+  height: 100vh;
+}
+
+.wrapper * {
+  margin: auto;
+}
+
+.title {
+  color: $pGold;
+  font-size: 70px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: 'Baloo Chettan 2', cursive;
+}
+
+.footer {
+  font-family: 'Open Sans';
+  font-size: 12px;
+  color: $pGold;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+}

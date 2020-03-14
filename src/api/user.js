@@ -8,6 +8,15 @@ const createUser = async body => {
   }
 };
 
+const getUserById = async id => {
+  try {
+    return axios.get(`${process.env.REACT_APP_API_URL}/users/${id}`);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
-  createUser
+  createUser,
+  getUserById
 };

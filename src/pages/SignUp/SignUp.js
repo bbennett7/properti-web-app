@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styles from './SignUp.module.scss';
 import firebase from '../../config/firebase-config';
-// import { createUser } from '../../api/index';
+import { createUser } from '../../api/user';
 import Button from '../../components/Button/Button';
 import helpers from '../../helpers';
 import Logo from '../../assets/Logo.png';
 import LandingImage from '../../assets/LandingImage.jpg';
+import UserContext from '../../context/UserContext';
 
 class SignUp extends PureComponent {
   state = {
@@ -20,7 +20,7 @@ class SignUp extends PureComponent {
   };
 
   validEmail = email => {
-    return email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
+    return email.match(/.+\@.+\..+/);
   };
 
   handleOnChange = event => {
@@ -38,7 +38,7 @@ class SignUp extends PureComponent {
     const { firstName, lastName, email, password, confirmPassword } = this.state;
     const errors = [];
 
-    Object.keys(this.state).forEach((key, i) => {
+    Object.keys(this.state).forEach(key => {
       switch (key) {
         case 'error':
           break;
@@ -74,23 +74,33 @@ class SignUp extends PureComponent {
       .createUserWithEmailAndPassword(email, password)
       .catch(error => {
         errors.push(`${error.message}`);
-        return this.setState({
-          errors
-        });
       });
+
+    if (errors.length > 0) {
+      return this.setState({
+        errors
+      });
+    }
 
     const firebaseUser = await firebase.auth().currentUser;
 
     const body = {
-      firebase_id: firebaseUser.uid,
-      email: firebaseUser.email
+      id: firebaseUser.uid,
+      first_name: firstName,
+      last_name: lastName,
+      email: firebaseUser.email,
+      account_type: 'Resident'
     };
 
-    // const dbUser = await createUser(body);
-
-    // this.context.user = dbUser;
-    // console.log(this.context);
-    this.props.history.push('/signup/payment');
+    try {
+      const data = await createUser(body);
+      this.context.user = data.data;
+      return this.props.history.push('/home');
+    } catch (err) {
+      return this.setState({
+        errors: err
+      });
+    }
   };
 
   renderErrors = () => {
@@ -143,6 +153,9 @@ class SignUp extends PureComponent {
             </form>
           </div>
           <div className={styles.errors}>{errors === [] ? null : this.renderErrors()}</div>
+          <div className={styles.actionText}>
+            Already have an account? <Link to={'/signin'}>Sign In</Link>
+          </div>
         </div>
       );
     };
@@ -163,3 +176,5 @@ class SignUp extends PureComponent {
 }
 
 export default SignUp;
+
+SignUp.contextType = UserContext;

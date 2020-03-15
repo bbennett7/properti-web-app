@@ -8,6 +8,15 @@ const getTasksByUserId = async id => {
   }
 };
 
+const getOpenTasksByManagerId = async id => {
+  try {
+    return axios.get(`${process.env.REACT_APP_API_URL}/managers/${id}/open-tasks`);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
-  getTasksByUserId
+  getTasksByUserId,
+  getOpenTasksByManagerId
 };

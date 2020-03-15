@@ -48,11 +48,20 @@ const createUserTask = async (id, body) => {
   }
 };
 
+const deleteTask = async (userId, taskId) => {
+  try {
+    return axios.delete(`${process.env.REACT_APP_API_URL}/users/${userId}/tasks/${taskId}`);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   getTasksByUserId,
   getOpenTasksByManagerId,
   getTasks,
   updateTask,
   createTask,
-  createUserTask
+  createUserTask,
+  deleteTask
 };

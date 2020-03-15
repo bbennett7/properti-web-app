@@ -16,7 +16,16 @@ const getUserById = async id => {
   }
 };
 
+const updateUser = async (id, body) => {
+  try {
+    return axios.patch(`${process.env.REACT_APP_API_URL}/users/${id}`, body);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   createUser,
-  getUserById
+  getUserById,
+  updateUser
 };

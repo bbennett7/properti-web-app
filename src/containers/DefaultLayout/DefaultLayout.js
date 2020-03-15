@@ -12,11 +12,7 @@ const DefaultLayout = () => {
   const { user, loading } = context;
 
   if (loading) {
-    return (
-      <div className={styles.container}>
-        <LoadingSpinner />
-      </div>
-    );
+    return user ? <LoadingSpinner /> : null;
   }
 
   return (

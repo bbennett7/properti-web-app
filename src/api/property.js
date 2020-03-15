@@ -8,6 +8,15 @@ const getPropertiesByManagerId = async id => {
   }
 };
 
+const getProperties = async () => {
+  try {
+    return axios.get(`${process.env.REACT_APP_API_URL}/properties`);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
-  getPropertiesByManagerId
+  getPropertiesByManagerId,
+  getProperties
 };

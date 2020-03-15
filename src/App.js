@@ -53,6 +53,15 @@ class App extends PureComponent {
     });
   };
 
+  removeUser = () => {
+    this.setState({
+      user: null,
+      tasks: []
+    });
+    console.log(this.state);
+    console.log(this.context);
+  };
+
   updateTasks = data => {
     return this.setState({
       tasks: data
@@ -60,14 +69,16 @@ class App extends PureComponent {
   };
 
   render() {
-    const { user, tasks } = this.state;
+    const { user, tasks, loading } = this.state;
     return (
       <UserContext.Provider
         value={{
           user,
           tasks,
+          loading,
           updateUser: this.updateUser,
-          updateTasks: this.updateTasks
+          updateTasks: this.updateTasks,
+          removeUser: this.removeUser
         }}
       >
         <DefaultLayout />

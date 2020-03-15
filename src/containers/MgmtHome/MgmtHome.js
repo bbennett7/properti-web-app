@@ -130,11 +130,11 @@ class MgmtHome extends PureComponent {
       task.status = data.data.status;
       updatedOpenTasks[i] = task;
 
-      return this.setState({
+      this.setState({
         openTasks: [...updatedOpenTasks]
       });
     } catch (err) {
-      return err;
+      console.log(err);
     }
   };
 

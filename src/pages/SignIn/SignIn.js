@@ -41,6 +41,8 @@ class SignIn extends PureComponent {
         errors
       });
     }
+
+    return 'Successfully logged in.';
   };
 
   renderErrors = () => {
@@ -82,7 +84,7 @@ class SignIn extends PureComponent {
           </div>
           <div className={styles.errors}>{errors === [] ? null : this.renderErrors()}</div>
           <div className={styles.actionText}>
-            Don't have an account yet? <Link to={'/signup'}>Sign Up</Link>
+            Don&apos;t have an account yet? <Link to={'/signup'}>Sign Up</Link>
           </div>
           <div className={styles.actionText}>Forgot Password</div>
         </div>

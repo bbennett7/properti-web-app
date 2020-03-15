@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styles from './Home.module.scss';
-import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
 import MgmtHome from '../../containers/MgmtHome/MgmtHome';
 
@@ -10,7 +9,7 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>Home</div>
-      <MgmtHome />
+      {userContext.user.account_type === 'Building Manager' ? <MgmtHome /> : null}
     </div>
   );
 };

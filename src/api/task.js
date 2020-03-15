@@ -32,9 +32,27 @@ const updateTask = async (userId, taskId, body) => {
   }
 };
 
+const createTask = async body => {
+  try {
+    return axios.post(`${process.env.REACT_APP_API_URL}/tasks`, body);
+  } catch (err) {
+    return err;
+  }
+};
+
+const createUserTask = async (id, body) => {
+  try {
+    return axios.post(`${process.env.REACT_APP_API_URL}/users/${id}/tasks`, body);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   getTasksByUserId,
   getOpenTasksByManagerId,
   getTasks,
-  updateTask
+  updateTask,
+  createTask,
+  createUserTask
 };

@@ -15,7 +15,7 @@ class App extends PureComponent {
 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(async user => {
-      console.log('Auth change', user);
+      console.log('Auth change');
 
       if (!user) {
         return this.setState({
@@ -54,12 +54,10 @@ class App extends PureComponent {
   };
 
   removeUser = () => {
-    this.setState({
+    return this.setState({
       user: null,
       tasks: []
     });
-    console.log(this.state);
-    console.log(this.context);
   };
 
   updateTasks = data => {

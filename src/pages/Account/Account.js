@@ -107,12 +107,10 @@ class Account extends PureComponent {
       property_id: updatedProperty.id,
       unit: updatedProperty.unit
     };
-    console.log(id, updatedProperty);
+
     try {
       const data = await updateUser(id, body);
-      console.log(data.data);
       this.context.updateUser(data.data);
-      console.log(this.context);
     } catch (err) {
       this.setState({
         updatedProperty: err

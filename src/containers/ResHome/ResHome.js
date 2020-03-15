@@ -69,14 +69,12 @@ class ResHome extends PureComponent {
       updatedObj[id] = value;
     }
 
-    this.setState({
+    return this.setState({
       createNewTaskForm: {
         ...this.state.createNewTaskForm,
         ...updatedObj
       }
     });
-
-    console.log(this.state);
   };
 
   handleCreateTask = async event => {

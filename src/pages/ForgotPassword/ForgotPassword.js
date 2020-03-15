@@ -59,7 +59,7 @@ class ForgotPassword extends PureComponent {
               </div>
               <Button
                 type="submit"
-                text={'Forgot Password'}
+                text={'Submit'}
                 bgColor={helpers.isMobile ? 'offWhite' : 'darkBlue'}
                 className={styles.button}
               />

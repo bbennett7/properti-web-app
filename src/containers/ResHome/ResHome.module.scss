@@ -24,7 +24,7 @@
   text-decoration: underline;
 }
 
-.header svg, .updateWrapper button, .createForm button {
+.header svg, .createForm button {
   cursor: pointer;
 }
 
@@ -80,56 +80,13 @@
   margin-right: 10px;
 }
 
-.taskData, .serviceData {
+.taskData {
   width: 90%;
   margin: 5px 30px;
   color: $pBlack;
   font-size: 14px;
   font-family: 'Raleway';
   flex-direction: row;
-}
-
-.action {
-  margin: 5px;
-  color: $pBlack;
-  font-size: 14px;
-  font-family: 'Raleway';
-  flex-direction: row;
-}
-
-.actionsWrapper {
-  margin: 5px 30px;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.actionsWrapper .action {
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.action:hover {
-  color: $pDarkBlue;
-}
-
-.actionsWrapper * {
-  color: $pGold;
-  font-weight: bold;
-}
-
-.serviceTitle {
-  width: 100%;
-  margin: 30px 30px 10px;
-  color: $pDarkBlue;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: 'Raleway';
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.serviceWrapper a {
-  color: $pGold;
 }
 
 .icon {
@@ -154,20 +111,7 @@
   font-family: 'Raleway';
 }
 
-.updateWrapper {
-  margin: 5px 30px;
-  color: $pBlack;
-  font-size: 14px;
-  font-family: 'Raleway';
-  width: 100%;
-}
-
-.updateWrapper select {
-  width: 200px;
-  margin-top: 5px;
-}
-
-.updateWrapper button, .createForm button {
+.createForm button {
   width: 100px;
   background: $pDarkBlue;
   color: $pOffWhite;

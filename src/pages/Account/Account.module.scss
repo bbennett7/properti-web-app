@@ -41,3 +41,65 @@
   font-size: 16px;
   font-family: 'Raleway';
 }
+
+.fieldData a {
+  color: $pGold;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.fieldData .form {
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.movedText {
+  font-family: 'Raleway';
+  font-size: 14px;
+  color: $pDarkBlue;
+  margin: 40px 30px 20px;
+  flex-direction: row;
+}
+
+.movedText div {
+  color: $pGold;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form {
+  width: 90%;
+  margin: 0px 30px;
+}
+
+.form, .form div {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  font-family: 'Raleway';
+  color: $pBlack;
+  flex-wrap: wrap;
+}
+
+.form label {
+  margin-right: 10px;
+}
+
+.form label, .form input {
+  margin-bottom: 10px;
+}
+
+.form input {
+  width: 40px;
+  padding-left: 3px;
+}
+
+.form button {
+  width: 80px;
+  background: $pDarkBlue;
+  color: $pOffWhite;
+  border-radius: 10px;
+  height: 20px;
+  cursor: pointer;
+}

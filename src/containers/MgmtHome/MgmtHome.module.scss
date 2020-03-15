@@ -68,6 +68,11 @@
   align-items: center;
 }
 
+.titleText {
+  flex-wrap: wrap;
+  width: 90%;
+}
+
 .smallIcon {
   justify-self: flex-end;
   cursor: pointer;

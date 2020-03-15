@@ -166,7 +166,9 @@ class MgmtHome extends PureComponent {
       return (
         <div className={styles.taskWrapper} key={t.id}>
           <div className={styles.taskTitle}>
-            {property.name} - Unit {resident.unit} - {task.name} - {t.urgency_level} Priority
+            <div className={styles.titleText}>
+              {property.name} - Unit {resident.unit} - {task.name} - {t.urgency_level} Priority
+            </div>
             <Expand className={styles.smallIcon} id={t.id} onClick={this.toggleExpanded} />
           </div>
           {expandedTask !== t.id ? null : (

@@ -60,9 +60,17 @@
   width: 100%;
   margin: 30px 30px 10px;
   color: $pDarkBlue;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   font-family: 'Raleway';
+  flex-direction: row;
+  align-items: center;
+}
+
+.taskTitle .icon {
+  margin-left: auto;
+  padding-right: 20px;
+  cursor: pointer;
 }
 
 .dataLabel {
@@ -79,14 +87,27 @@
   flex-direction: row;
 }
 
+.action {
+  margin: 5px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  flex-direction: row;
+}
+
 .actionsWrapper {
+  margin: 5px 30px;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.actionsWrapper .taskData {
+.actionsWrapper .action {
   cursor: pointer;
   text-decoration: none;
+}
+
+.action:hover {
+  color: $pDarkBlue;
 }
 
 .actionsWrapper * {
@@ -129,4 +150,18 @@
   font-size: 14px;
   font-weight: bold;
   font-family: 'Raleway';
+}
+
+.updateWrapper {
+  margin: 5px 30px;
+  padding: 5px 20px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  width: 100%;
+}
+
+.updateWrapper * {
+  width: 200px;
+  margin-top: 5px;
 }

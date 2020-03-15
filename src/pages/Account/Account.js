@@ -136,9 +136,10 @@ class Account extends PureComponent {
             <div className={styles.fieldData}>
               {user.first_name}&nbsp;{user.last_name}
             </div>
-
             <div className={styles.fieldTitle}>Email</div>
             <div className={styles.fieldData}>{user.email}</div>
+            <div className={styles.fieldTitle}>Account</div>
+            <div className={styles.fieldData}>{user.account_type}</div>
           </div>
           <div className={styles.col}>
             {!user.property ? (

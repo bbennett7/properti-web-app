@@ -6,35 +6,40 @@ const routes = [
     exact: true,
     name: 'Landing',
     component: Landing,
-    authRequired: false
+    authRequired: false,
+    redirect: '/home'
   },
   {
     path: '/signup',
     exact: true,
     name: 'SignUp',
     component: SignUp,
-    authRequired: false
+    authRequired: false,
+    redirect: '/home'
   },
   {
     path: '/signin',
     exact: true,
     name: 'SignIn',
     component: SignIn,
-    authRequired: false
+    authRequired: false,
+    redirect: '/home'
   },
   {
     path: '/home',
     exact: true,
     name: 'Home',
     component: Home,
-    authRequired: true
+    authRequired: true,
+    redirect: '/'
   },
   {
     path: '/account',
     exact: true,
     name: 'Account',
     component: Account,
-    authRequired: true
+    authRequired: true,
+    redirect: '/'
   }
 ];
 

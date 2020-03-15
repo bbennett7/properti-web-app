@@ -82,7 +82,7 @@ class SignUp extends PureComponent {
       });
     }
 
-    const firebaseUser = await firebase.auth().currentUser;
+    const firebaseUser = firebase.auth().currentUser;
 
     const body = {
       id: firebaseUser.uid,
@@ -94,7 +94,7 @@ class SignUp extends PureComponent {
 
     try {
       const data = await createUser(body);
-      this.context.user = data.data;
+      this.context.updateUser(data.data);
       return this.props.history.push('/home');
     } catch (err) {
       return this.setState({

@@ -1,4 +1,4 @@
-import { Landing, SignUp, SignIn, Account, Home } from '../pages';
+import { Landing, SignUp, SignIn, Account, Home, ForgotPassword } from '../pages';
 
 const routes = [
   {
@@ -22,6 +22,14 @@ const routes = [
     exact: true,
     name: 'SignIn',
     component: SignIn,
+    authRequired: false,
+    redirect: '/home'
+  },
+  {
+    path: '/forgot-password',
+    exact: true,
+    name: 'ForgotPassword',
+    component: ForgotPassword,
     authRequired: false,
     redirect: '/home'
   },

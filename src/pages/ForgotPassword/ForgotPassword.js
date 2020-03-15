@@ -1,62 +1,49 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './SignIn.module.scss';
+import styles from './ForgotPassword.module.scss';
 import firebase from '../../config/firebase-config';
 import Button from '../../components/Button/Button';
 import helpers from '../../helpers';
 import Logo from '../../assets/Logo.png';
 import LandingImage from '../../assets/LandingImage.jpg';
 
-class SignIn extends PureComponent {
+class ForgotPassword extends PureComponent {
   state = {
     email: '',
-    password: '',
-    errors: []
+    error: '',
+    message: ''
   };
 
   handleOnChange = event => {
-    const stateObj = {};
-    stateObj[event.target.name] = event.target.value;
-
     return this.setState({
-      ...this.state,
-      ...stateObj
+      email: event.target.value
     });
   };
 
   handleOnSubmit = async event => {
     event.preventDefault();
-    const { email, password } = this.state;
-    const errors = [];
+    const { email } = this.state;
 
-    await firebase
+    firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        this.setState({
+          email: '',
+          message: 'You have been sent an email to reset your password.',
+          error: ''
+        });
+      })
       .catch(error => {
-        errors.push(`${error.message}`);
+        this.setState({
+          error: `${error.message}`,
+          message: ''
+        });
       });
-
-    if (errors.length > 0) {
-      return this.setState({
-        errors
-      });
-    }
-
-    return 'Successfully logged in.';
-  };
-
-  renderErrors = () => {
-    return this.state.errors.map(e => {
-      return (
-        <div key={e} className={styles.error}>
-          {e}
-        </div>
-      );
-    });
   };
 
   render() {
-    const { errors } = this.state;
+    const { error, message } = this.state;
 
     const authModule = () => {
       return (
@@ -70,24 +57,21 @@ class SignIn extends PureComponent {
                 <label name="email"> Email </label>
                 <input name="email" onChange={this.handleOnChange} />
               </div>
-              <div className={`${styles.formRow} ${styles.lastRow}`}>
-                <label name="password"> Password </label>
-                <input name="password" type="password" onChange={this.handleOnChange} />
-              </div>
               <Button
                 type="submit"
-                text={'Sign In'}
+                text={'Forgot Password'}
                 bgColor={helpers.isMobile ? 'offWhite' : 'darkBlue'}
                 className={styles.button}
               />
             </form>
           </div>
-          <div className={styles.errors}>{errors === [] ? null : this.renderErrors()}</div>
+          {message === '' ? null : <div className={styles.message}>{message}</div>}
+          <div className={styles.error}>{error === '' ? null : error}</div>
           <div className={styles.actionText}>
             Don&apos;t have an account yet? <Link to={'/signup'}>Sign Up</Link>
           </div>
           <div className={styles.actionText}>
-            <Link to={'/forgot-password'}>Forgot Password</Link>
+            Back to <Link to={'/signin'}>Sign In</Link>
           </div>
         </div>
       );
@@ -108,4 +92,4 @@ class SignIn extends PureComponent {
   }
 }
 
-export default SignIn;
+export default ForgotPassword;

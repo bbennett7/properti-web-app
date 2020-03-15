@@ -12,7 +12,9 @@ module.exports = {
       'no-console': 0,
       'react/prop-types': 0,
       'no-underscore-dangle': 1,
-      'react/no-string-refs': 1
+      'react/no-string-refs': 1,
+      'no-useless-escape': 1,
+      'no-case-declarations': 1
     },
     settings: {
       react: {

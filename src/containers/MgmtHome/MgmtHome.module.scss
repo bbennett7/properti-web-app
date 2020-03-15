@@ -37,7 +37,7 @@
   margin-right: 10px;
 }
 
-.taskData {
+.taskData, .serviceData {
   width: 90%;
   margin: 5px 30px;
   color: $pBlack;
@@ -51,7 +51,26 @@
   justify-content: space-between;
 }
 
+.actionsWrapper .taskData {
+  cursor: pointer;
+}
+
 .actionsWrapper * {
   color: $pGold;
   font-weight: bold;
+}
+
+.serviceTitle {
+  width: 100%;
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.serviceWrapper a {
+  color: $pGold;
 }

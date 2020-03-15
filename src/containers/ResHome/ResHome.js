@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import styles from './ResHome.module.scss';
-import { getTasks, createTask, createUserTask } from '../../api/task';
+import { getTasks, createTask, createUserTask, deleteTask } from '../../api/task';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 // import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Expand } from '../../assets/add.svg';
 import { ReactComponent as Trash } from '../../assets/trash-can.svg';
+
+const moment = require('moment');
 
 class ResHome extends PureComponent {
   state = {
@@ -151,6 +153,24 @@ class ResHome extends PureComponent {
     });
   };
 
+  deleteTask = async event => {
+    event.preventDefault();
+
+    try {
+      const data = await deleteTask(this.context.user.id, event.currentTarget.id);
+      const updatedTasks = this.context.tasks.filter(t => t.id !== data.data.id);
+
+      this.context.updateTasks(updatedTasks);
+      const updatedOpenTasks = this.state.openTasks.filter(t => t.id !== data.data.id);
+
+      return this.setState({
+        openTasks: [...updatedOpenTasks]
+      });
+    } catch (err) {
+      return err;
+    }
+  };
+
   renderTasks = tasks => {
     const { expandedTask } = this.state;
 
@@ -161,8 +181,14 @@ class ResHome extends PureComponent {
         <div className={styles.taskWrapper} key={t.id}>
           <div className={styles.taskTitle}>
             {task.name}
-            <Expand className={styles.smallIcon} id={t.id} onClick={this.toggleExpanded} />
-            <Trash className={styles.smallIcon} />
+            <Expand
+              className={`${styles.smallIcon} ${styles.expandIcon}`}
+              id={t.id}
+              onClick={this.toggleExpanded}
+            />
+            {t.status === 'Completed' ? null : (
+              <Trash className={styles.smallIcon} id={t.id} onClick={this.deleteTask} />
+            )}
           </div>
           {expandedTask !== t.id ? null : (
             <div className={styles.taskDetails}>
@@ -180,6 +206,14 @@ class ResHome extends PureComponent {
                 </div>
                 {t.status}
               </div>
+              {t.status === 'Completed' ? (
+                <div className={styles.taskData}>
+                  <div className={styles.dataLabel} id={t.id}>
+                    Completed on:
+                  </div>
+                  {moment(t.completed_on).format('MMMM DD, YYYY')}
+                </div>
+              ) : null}
             </div>
           )}
         </div>
@@ -207,9 +241,17 @@ class ResHome extends PureComponent {
           <div className={styles.col}>
             <div className={styles.header}>Tasks</div>
             <div className={styles.subHeader}>Open Tasks</div>
-            {this.renderTasks(openTasks)}
+            {openTasks.length > 0 ? (
+              this.renderTasks(openTasks)
+            ) : (
+              <div className={styles.noTasks}>No open tasks.</div>
+            )}
             <div className={styles.subHeader}>Completed Tasks</div>
-            {this.renderTasks(completedTasks)}
+            {completedTasks.length > 0 ? (
+              this.renderTasks(completedTasks)
+            ) : (
+              <div className={styles.noTasks}>No completed tasks.</div>
+            )}
           </div>
           <div className={styles.col}>
             <div className={styles.header}>Create a Task</div>

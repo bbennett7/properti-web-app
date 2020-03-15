@@ -62,7 +62,11 @@
 .taskTitle .smallIcon {
   height: 20px;
   width: 20px;
-  margin-left: 10px;
+  margin-left: 20px;
+}
+
+.expandIcon {
+  margin-right: 10px;
 }
 
 .taskData .smallIcon {
@@ -176,7 +180,7 @@
   flex-direction: column;
   align-self: center;
   margin-top: 20px;
-  width: 70%;
+  width: 75%;
 }
 
 .dropdownWrapper, .notesWrapper, .createNewTaskWrapper {
@@ -230,7 +234,6 @@
 }
 
 .error {
-  // font-weight: 600;
   font-size: 14px;
   color: $pErrorRed;
   font-family: 'Raleway';
@@ -238,4 +241,9 @@
   margin-top: 20px;
 }
 
-
+.noTasks {
+  font-size: 14px;
+  color: $pBlack;
+  font-family: 'Raleway';
+  margin: 5px 0px 20px;
+}

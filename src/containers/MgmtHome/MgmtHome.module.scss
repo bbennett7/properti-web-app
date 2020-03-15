@@ -10,6 +10,39 @@
   color: $pDarkBlue;
   font-size: 30px;
   font-family: 'Baloo Chettan 2', cursive;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filterTitle {
+  font-family: 'Baloo Chettan 2', cursive;
+  width: 100%;
+  color: $pDarkBlue;
+  font-size: 18px;
+}
+
+.filtersWrapper, .filterWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.filtersWrapper {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+
+.filterWrapper {
+  width: 45%;
+  margin-bottom: 5px;
+  font-family: 'Raleway';
+  font-size: 14px;
+}
+
+.header svg {
+  cursor: pointer;
 }
 
 .accountInfoWrapper {
@@ -53,6 +86,7 @@
 
 .actionsWrapper .taskData {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .actionsWrapper * {
@@ -73,4 +107,26 @@
 
 .serviceWrapper a {
   color: $pGold;
+}
+
+.icon {
+  margin-right: 20.75px;
+  height: 32px;
+  width: 32px;
+  stroke: $pDarkBlue;
+}
+
+.icon * {
+  align-items: center;
+  stroke: $pDarkBlue;
+  height: 32px;
+  width: 32px;
+}
+
+.message {
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
 }

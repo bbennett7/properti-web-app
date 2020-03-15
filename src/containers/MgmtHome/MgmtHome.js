@@ -6,9 +6,9 @@ import { getPropertiesByManagerId } from '../../api/property';
 import { getOpenTasksByManagerId } from '../../api/task';
 import { fetchYelpServices } from '../../api/yelp';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-
 // import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
+import { ReactComponent as Filter } from '../../assets/filter.svg';
 
 class MgmtHome extends PureComponent {
   state = {
@@ -18,7 +18,10 @@ class MgmtHome extends PureComponent {
     loadingServices: false,
     localServices: [],
     error: '',
-    searchMessage: ''
+    searchMessage: '',
+    activeFilter: false,
+    filteredTasks: [],
+    filterByProperties: []
   };
 
   componentDidMount() {
@@ -42,7 +45,8 @@ class MgmtHome extends PureComponent {
     event.preventDefault();
     this.setState({
       loadingServices: true,
-      localServices: []
+      localServices: [],
+      searchMessage: ''
     });
     const { id } = event.currentTarget;
     const item = this.state.openTasks.find(t => t.id === id);
@@ -53,10 +57,10 @@ class MgmtHome extends PureComponent {
     try {
       const data = await fetchYelpServices(queryString);
 
-      if (data.length === 0) {
+      if (data.data.length === 0) {
         return this.setState({
           loadingServices: false,
-          searchMessage: 'No services found in that area.'
+          searchMessage: 'No services found for this building\'s area.'
         });
       }
 
@@ -72,8 +76,9 @@ class MgmtHome extends PureComponent {
   };
 
   renderOpenTasks = () => {
-    const { openTasks } = this.state;
-    return openTasks.map(t => {
+    const { openTasks, filteredTasks, filterByProperties } = this.state;
+    const tasks = filterByProperties.length > 0 ? filteredTasks : openTasks;
+    return tasks.map(t => {
       const { task, resident, property } = t;
 
       return (
@@ -105,11 +110,8 @@ class MgmtHome extends PureComponent {
   };
 
   renderLocalServices = () => {
-    console.log(this.state.localServices);
     const { localServices } = this.state;
     return localServices.map(s => {
-      const { location, display_phone } = s;
-      console.log(s);
       return (
         <div className={styles.serviceWrapper} key={s.id}>
           <div className={styles.serviceTitle}>
@@ -128,32 +130,85 @@ class MgmtHome extends PureComponent {
     });
   };
 
+  toggleFilter = () => {
+    return this.setState({
+      activeFilter: !this.state.activeFilter
+    });
+  };
+
+  handleOnCheck = async event => {
+    const propertyId = event.target.value;
+    const { filteredTasks, filterByProperties, openTasks } = this.state;
+
+    if (filterByProperties.includes(propertyId)) {
+      const updatedFilterBy = filterByProperties.filter(p => p !== propertyId);
+      const updatedFilteredTasks = filteredTasks.filter(t => t.property.id !== propertyId);
+
+      return this.setState({
+        filterByProperties: [...updatedFilterBy],
+        filteredTasks: [...updatedFilteredTasks]
+      });
+    }
+    const newFilterTasks = openTasks.filter(t => t.property.id === propertyId);
+
+    return this.setState({
+      filterByProperties: [...filterByProperties, propertyId],
+      filteredTasks: [...newFilterTasks, ...filteredTasks]
+    });
+  };
+
+  renderFilters = () => {
+    const { properties } = this.state;
+
+    return properties.map(p => {
+      return (
+        <div className={styles.filterWrapper} key={p.id}>
+          <input
+            onChange={this.handleOnCheck}
+            className={styles.checkbox}
+            type="checkbox"
+            id={p.name}
+            name={p.name}
+            value={p.id}
+            ref={`ref_${p.name}`}
+          />
+          <label htmlFor={p.name} className={styles.label}>
+            {p.name}
+          </label>
+        </div>
+      );
+    });
+  };
+
   render() {
     const { user } = this.context;
-    const { loading, loadingServices, localServices } = this.state;
+    const { loading, loadingServices, localServices, activeFilter, searchMessage } = this.state;
 
     if (loading) {
-      return null;
+      return <LoadingSpinner />;
     }
 
     return (
       <div className={styles.container}>
         <div className={styles.accountInfoWrapper}>
           <div className={styles.col}>
-            <div className={styles.header}>Open Tasks</div>
+            <div className={styles.header}>
+              Open Tasks <Filter className={styles.icon} onClick={this.toggleFilter} />
+            </div>
+            {activeFilter ? (
+              <React.Fragment>
+                <div className={styles.filterTitle}>Filter by Property</div>
+                <div className={styles.filtersWrapper}>{this.renderFilters()}</div>
+              </React.Fragment>
+            ) : null}
             {this.renderOpenTasks()}
           </div>
           <div className={styles.col}>
             {loadingServices ? <LoadingSpinner /> : null}
+            {searchMessage ? <div className={styles.message}>{searchMessage}</div> : null}
             {localServices.length === 0 ? null : this.renderLocalServices()}
           </div>
         </div>
-        <Button
-          onClick={this.signOut}
-          text={'Sign Out'}
-          bgColor={'darkBlue'}
-          className={styles.button}
-        />
       </div>
     );
   }

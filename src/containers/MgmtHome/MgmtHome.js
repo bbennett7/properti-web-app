@@ -4,7 +4,6 @@ import { getPropertiesByManagerId } from '../../api/property';
 import { getOpenTasksByManagerId, updateTask } from '../../api/task';
 import { fetchYelpServices } from '../../api/yelp';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-// import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Filter } from '../../assets/filter.svg';
 import { ReactComponent as Expand } from '../../assets/add.svg';

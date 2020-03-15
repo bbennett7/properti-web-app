@@ -33,5 +33,3 @@ const SideNav = () => {
 };
 
 export default SideNav;
-
-// SideNav.propTypes = {};

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import styles from './Account.module.scss';
 import firebase from '../../config/firebase-config';
 import Button from '../../components/Button/Button';
-// import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
 import { getProperties } from '../../api/property';
 import { updateUser } from '../../api/user';

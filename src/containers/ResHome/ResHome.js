@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import styles from './ResHome.module.scss';
 import { getTasks, createTask, createUserTask, deleteTask } from '../../api/task';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-// import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Expand } from '../../assets/add.svg';
 import { ReactComponent as Trash } from '../../assets/trash-can.svg';

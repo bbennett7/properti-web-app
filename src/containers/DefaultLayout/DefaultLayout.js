@@ -4,7 +4,6 @@ import styles from './DefaultLayout.module.scss';
 import RouteConfig from '../../router/RouteConfig';
 import UserContext from '../../context/UserContext';
 import SideNav from '../../components/SideNav/SideNav';
-import helpers from '../../helpers';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const DefaultLayout = () => {
@@ -18,7 +17,7 @@ const DefaultLayout = () => {
   return (
     <div className={styles.container}>
       <BrowserRouter>
-        {!helpers.isMobile && user ? <SideNav /> : null}
+        {user ? <SideNav /> : null}
         <>
           <Switch>
             {RouteConfig.map(route => {

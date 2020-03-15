@@ -14,8 +14,10 @@ class Account extends PureComponent {
     firebase
       .auth()
       .signOut()
-      .then(() => {
+      .then(async () => {
         console.log('Sign out success');
+        await this.context.removeUser();
+        this.props.history.push('/');
       })
       .catch(error => {
         console.log('Error signing out', error);

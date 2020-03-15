@@ -1,0 +1,241 @@
+@import '../../styles/variables';
+
+.container {
+  width: 100%;
+  align-items: center;
+}
+
+.header, .subHeader {
+  width: 100%;
+  color: $pDarkBlue;
+  font-family: 'Baloo Chettan 2', cursive;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 30px;
+}
+
+.subHeader {
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.header svg, .updateWrapper button, .createForm button {
+  cursor: pointer;
+}
+
+.accountInfoWrapper {
+  flex-direction: row;
+  margin: 100px 50px 30px;
+  width: 100%;
+}
+
+.col {
+  width: 50%;
+  min-width: 450px;
+  border-right: 1px solid $pDarkBlue;
+  padding: 0px 20px;
+}
+
+.taskTitle {
+  width: 100%;
+  margin: 10px 0px;
+  color: $pBlack;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
+  flex-direction: row;
+  align-items: center;
+}
+
+.smallIcon {
+  justify-self: flex-end;
+  cursor: pointer;
+  stroke: $pDarkBlue;
+  fill: $pDarkBlue;
+}
+
+.taskTitle .smallIcon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.taskData .smallIcon {
+  height: 15px;
+  width: 15px;
+  margin-left: 10px;
+}
+
+.dataLabel {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.taskData, .serviceData {
+  width: 90%;
+  margin: 5px 30px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  flex-direction: row;
+}
+
+.action {
+  margin: 5px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  flex-direction: row;
+}
+
+.actionsWrapper {
+  margin: 5px 30px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.actionsWrapper .action {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.action:hover {
+  color: $pDarkBlue;
+}
+
+.actionsWrapper * {
+  color: $pGold;
+  font-weight: bold;
+}
+
+.serviceTitle {
+  width: 100%;
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.serviceWrapper a {
+  color: $pGold;
+}
+
+.icon {
+  margin-right: 20.75px;
+  height: 32px;
+  width: 32px;
+  stroke: $pBlack;
+}
+
+.icon * {
+  align-items: center;
+  stroke: $pDarkBlue;
+  height: 32px;
+  width: 32px;
+}
+
+.message {
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
+}
+
+.updateWrapper {
+  margin: 5px 30px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  width: 100%;
+}
+
+.updateWrapper select {
+  width: 200px;
+  margin-top: 5px;
+}
+
+.updateWrapper button, .createForm button {
+  width: 100px;
+  background: $pDarkBlue;
+  color: $pOffWhite;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 20px;
+  width: 70%;
+}
+
+.dropdownWrapper, .notesWrapper, .createNewTaskWrapper {
+  flex-direction: row;
+}
+
+.createForm .dropdownWrapper {
+  justify-content: space-between;
+}
+
+.createNewTaskWrapper {
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.createNewTaskWrapper input {
+  border: 1px solid $pDarkBlue;
+  border-radius: 5px;
+  width: 170px;
+  padding: 5px;
+}
+
+.notesWrapper {
+  justify-content: flex-start;
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.notesWrapper *, .createNewTaskWrapper * {
+  margin: 0px 5px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+}
+
+.notesWrapper textarea {
+  width: 300px;
+  height: 40px;
+  border: 1px solid $pDarkBlue;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.createForm button {
+  width: 100px;
+  background: $pDarkBlue;
+  color: $pOffWhite;
+  border-radius: 10px;
+  align-self: center;
+}
+
+.error {
+  // font-weight: 600;
+  font-size: 14px;
+  color: $pErrorRed;
+  font-family: 'Raleway';
+  align-self: center;
+  margin-top: 20px;
+}
+
+

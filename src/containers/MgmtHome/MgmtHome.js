@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import styles from './MgmtHome.module.scss';
 import { getPropertiesByManagerId } from '../../api/property';
-import { getOpenTasksByManagerId } from '../../api/task';
+import { getOpenTasksByManagerId, updateTask } from '../../api/task';
 import { fetchYelpServices } from '../../api/yelp';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 // import helpers from '../../helpers';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Filter } from '../../assets/filter.svg';
 import { ReactComponent as Expand } from '../../assets/add.svg';
+import { ReactComponent as Edit } from '../../assets/pencil.svg';
 
 class MgmtHome extends PureComponent {
   state = {
@@ -22,6 +23,7 @@ class MgmtHome extends PureComponent {
     activeFilter: false,
     activeUpdate: false,
     activeUpdateId: '',
+    activeUpdateSelected: '',
     filteredTasks: [],
     filterByProperties: [],
     expandedTask: ''
@@ -93,13 +95,47 @@ class MgmtHome extends PureComponent {
     event.preventDefault();
     return this.setState({
       activeUpdate: !this.state.activeUpdate,
-      activeUpdateId: this.state.activeUpdate ? '' : event.currentTarget.id
+      activeUpdateId: this.state.activeUpdate ? '' : event.currentTarget.id,
+      activeUpdateSelected: ''
+    });
+  };
+
+  handleDropdownChange = event => {
+    event.preventDefault();
+    const { value } = event.currentTarget;
+    if (value === 'Select') {
+      return this.setState({
+        activeUpdateSelected: ''
+      });
+    }
+
+    return this.setState({
+      activeUpdateSelected: value
     });
   };
 
   updateTaskStatus = async event => {
     event.preventDefault();
-    console.log('clicked');
+    const { activeUpdateSelected, activeUpdateId, openTasks } = this.state;
+    const i = openTasks.findIndex(t => t.id === activeUpdateId);
+    const task = openTasks[i];
+
+    if (task.status === activeUpdateSelected || activeUpdateSelected === 'Select') {
+      return;
+    }
+
+    try {
+      const data = await updateTask(task.resident.id, task.id, { status: activeUpdateSelected });
+      const updatedOpenTasks = openTasks;
+      task.status = data.data.status;
+      updatedOpenTasks[i] = task;
+
+      return this.setState({
+        openTasks: [...updatedOpenTasks]
+      });
+    } catch (err) {
+      return err;
+    }
   };
 
   toggleExpanded = event => {
@@ -131,7 +167,7 @@ class MgmtHome extends PureComponent {
         <div className={styles.taskWrapper} key={t.id}>
           <div className={styles.taskTitle}>
             {property.name} - Unit {resident.unit} - {task.name} - {t.urgency_level} Priority
-            <Expand className={styles.icon} id={t.id} onClick={this.toggleExpanded} />
+            <Expand className={styles.smallIcon} id={t.id} onClick={this.toggleExpanded} />
           </div>
           {expandedTask !== t.id ? null : (
             <div className={styles.taskDetails}>
@@ -148,32 +184,29 @@ class MgmtHome extends PureComponent {
                   Status:
                 </div>
                 {t.status}
+                <Edit className={styles.smallIcon} onClick={this.toggleUpdate} id={t.id} />
               </div>
+              {activeUpdateId !== t.id ? null : (
+                <div className={styles.updateWrapper}>
+                  <form onSubmit={this.updateTaskStatus}>
+                    <select id={t.id} name={t.name} onChange={this.handleDropdownChange}>
+                      <option value="Select">Select Status</option>
+                      <option value="Open">Open</option>
+                      <option value="In Progress">In Progress</option>
+                      <option value="Completed">Completed</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
+              )}
               <div className={styles.actionsWrapper}>
                 <a href={`mailto:${resident.email}`} className={styles.action}>
                   Contact Resident
                 </a>
-                <div className={styles.action} onClick={this.toggleUpdate} id={t.id}>
-                  Update Status
-                </div>
                 <div className={styles.action} onClick={this.getServices} id={t.id}>
                   Find a service
                 </div>
               </div>
-            </div>
-          )}
-
-          {activeUpdateId !== t.id ? null : (
-            <div className={styles.updateWrapper}>
-              Update Status for {property.name}, Unit {resident.unit}
-              <form onSubmit={this.updateTaskStatus}>
-                <select id={t.id} name={t.name}>
-                  <option value="Open">Open</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Complete">Complete</option>
-                </select>
-                <button type="submit">Submit</button>
-              </form>
             </div>
           )}
         </div>

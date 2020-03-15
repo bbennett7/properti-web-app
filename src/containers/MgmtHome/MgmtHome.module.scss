@@ -41,7 +41,7 @@
   font-size: 14px;
 }
 
-.header svg {
+.header svg, .updateWrapper button {
   cursor: pointer;
 }
 
@@ -52,13 +52,14 @@
 }
 
 .col {
-  min-width: 50%;
+  width: 50%;
+  min-width: 450px;
   border-right: 1px solid $pDarkBlue;
 }
 
 .taskTitle {
   width: 100%;
-  margin: 30px 30px 10px;
+  margin: 10px 0px;
   color: $pDarkBlue;
   font-size: 15px;
   font-weight: bold;
@@ -67,10 +68,23 @@
   align-items: center;
 }
 
-.taskTitle .icon {
-  margin-left: auto;
-  padding-right: 20px;
+.smallIcon {
+  justify-self: flex-end;
   cursor: pointer;
+  stroke: $pDarkBlue;
+  fill: $pDarkBlue;
+}
+
+.taskTitle .smallIcon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.taskData .smallIcon {
+  height: 15px;
+  width: 15px;
+  margin-left: 10px;
 }
 
 .dataLabel {
@@ -154,14 +168,21 @@
 
 .updateWrapper {
   margin: 5px 30px;
-  padding: 5px 20px;
   color: $pBlack;
   font-size: 14px;
   font-family: 'Raleway';
   width: 100%;
 }
 
-.updateWrapper * {
+.updateWrapper select {
   width: 200px;
   margin-top: 5px;
+}
+
+.updateWrapper button {
+  width: 100px;
+  background: $pDarkBlue;
+  color: $pOffWhite;
+  margin-left: 20px;
+  border-radius: 10px;
 }

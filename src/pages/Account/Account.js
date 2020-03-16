@@ -4,7 +4,7 @@ import firebase from '../../config/firebase-config';
 import Button from '../../components/Button/Button';
 import UserContext from '../../context/UserContext';
 import { getProperties } from '../../api/property';
-import { updateUser } from '../../api/user';
+import { updateUser, getUserById } from '../../api/user';
 
 class Account extends PureComponent {
   state = {
@@ -51,23 +51,28 @@ class Account extends PureComponent {
   };
 
   renderUpdateForm = () => {
-    const { properties } = this.state;
+    const { properties, updatedProperty } = this.state;
     return (
-      <form onSubmit={this.handleOnSubmit} className={styles.form}>
-        <select onChange={this.handleOnChange} id={'id'}>
-          <option value="Select">Select Building</option>
-          {properties.map(p => (
-            <option value={p.id} key={p.id}>
-              {p.name}
-            </option>
-          ))}
-        </select>
-        <div>
-          <label>Unit</label>
-          <input id="unit" onChange={this.handleOnChange} />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <React.Fragment>
+        <form onSubmit={this.handleOnSubmit} className={styles.form}>
+          <select onChange={this.handleOnChange} id={'id'}>
+            <option value="Select">Select Building</option>
+            {properties.map(p => (
+              <option value={p.id} key={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </select>
+          <div>
+            <label>Unit</label>
+            <input id="unit" onChange={this.handleOnChange} />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        {updatedProperty.error === '' ? null : (
+          <div className={styles.error}>{updatedProperty.error}</div>
+        )}
+      </React.Fragment>
     );
   };
 
@@ -99,20 +104,34 @@ class Account extends PureComponent {
     });
   };
 
-  handleOnSubmit = async () => {
+  handleOnSubmit = async event => {
+    event.preventDefault();
     const { id } = this.context.user;
     const { updatedProperty } = this.state;
+    if (updatedProperty.id === '' || updatedProperty.unit === '') {
+      return this.setState({
+        updatedProperty: {
+          ...this.state.updatedProperty,
+          error: 'All fields are required.'
+        }
+      });
+    }
+
     const body = {
       property_id: updatedProperty.id,
       unit: updatedProperty.unit
     };
 
     try {
-      const data = await updateUser(id, body);
+      await updateUser(id, body);
+      const data = await getUserById(id);
       this.context.updateUser(data.data);
     } catch (err) {
       this.setState({
-        updatedProperty: err
+        updatedProperty: {
+          ...this.state.updatedProperty,
+          error: err
+        }
       });
     }
   };

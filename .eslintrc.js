@@ -14,7 +14,8 @@ module.exports = {
       'no-underscore-dangle': 1,
       'react/no-string-refs': 1,
       'no-useless-escape': 1,
-      'no-case-declarations': 1
+      'no-case-declarations': 1,
+      'consistent-return': 1
     },
     settings: {
       react: {

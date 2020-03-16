@@ -103,3 +103,12 @@
   height: 20px;
   cursor: pointer;
 }
+
+.error {
+  text-align: center;
+  font-family: 'Raleway';
+  color: $pErrorRed;
+  width: 100%;
+  align-items: center;
+}
+

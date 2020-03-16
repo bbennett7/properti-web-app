@@ -98,7 +98,7 @@ class SignUp extends PureComponent {
       return this.props.history.push('/home');
     } catch (err) {
       return this.setState({
-        errors: err
+        errors: [...this.state.errors, err.message]
       });
     }
   };

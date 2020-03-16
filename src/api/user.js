@@ -24,7 +24,7 @@ const updateUser = async (id, body) => {
   }
 };
 
-module.exports = {
+export default {
   createUser,
   getUserById,
   updateUser

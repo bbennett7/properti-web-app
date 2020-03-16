@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ResHome.module.scss';
-import { getTasks, createNewTask, createUserTask, deleteTask } from '../../api/task';
+import Task from '../../api/task';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Expand } from '../../assets/add.svg';
@@ -37,7 +37,7 @@ class ResHome extends PureComponent {
     const completedTasks = [];
 
     try {
-      const data = await getTasks();
+      const data = await Task.getTasks();
 
       this.context.tasks.forEach(t => {
         if (t.status === 'Completed') {
@@ -95,7 +95,7 @@ class ResHome extends PureComponent {
     try {
       let tId = taskId;
       if (newTaskName !== '') {
-        const data = await createNewTask({ name: newTaskName });
+        const data = await Task.createNewTask({ name: newTaskName });
         tId = data.data.id;
       }
 
@@ -106,7 +106,7 @@ class ResHome extends PureComponent {
         property_id: user.property.id
       };
 
-      const data = await createUserTask(user.id, body);
+      const data = await Task.createUserTask(user.id, body);
 
       if (newTaskName !== '') {
         data.data.task = { id: tId, name: newTaskName };
@@ -155,7 +155,7 @@ class ResHome extends PureComponent {
     event.preventDefault();
 
     try {
-      const data = await deleteTask(this.context.user.id, event.currentTarget.id);
+      const data = await Task.deleteTask(this.context.user.id, event.currentTarget.id);
       const updatedTasks = this.context.tasks.filter(t => t.id !== data.data.id);
 
       this.context.updateTasks(updatedTasks);

@@ -16,7 +16,7 @@ const getProperties = async () => {
   }
 };
 
-module.exports = {
+export default {
   getPropertiesByManagerId,
   getProperties
 };

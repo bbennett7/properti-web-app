@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SignUp.module.scss';
 import firebase from '../../config/firebase-config';
-import { createUser } from '../../api/user';
+import User from '../../api/user';
 import Button from '../../components/Button/Button';
 import helpers from '../../helpers';
 import Logo from '../../assets/Logo.png';
@@ -93,7 +93,7 @@ class SignUp extends PureComponent {
     };
 
     try {
-      const data = await createUser(body);
+      const data = await User.createUser(body);
       this.context.updateUser(data.data);
       return this.props.history.push('/home');
     } catch (err) {

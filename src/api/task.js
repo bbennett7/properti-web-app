@@ -56,7 +56,7 @@ const deleteTask = async (userId, taskId) => {
   }
 };
 
-module.exports = {
+export default {
   getTasksByUserId,
   getOpenTasksByManagerId,
   getTasks,

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import styles from './MgmtHome.module.scss';
-import { getPropertiesByManagerId } from '../../api/property';
-import { getOpenTasksByManagerId, updateTask } from '../../api/task';
-import { fetchYelpServices } from '../../api/yelp';
+import Property from '../../api/property';
+import Task from '../../api/task';
+import Yelp from '../../api/yelp';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Filter } from '../../assets/filter.svg';
@@ -45,8 +45,8 @@ class MgmtHome extends PureComponent {
       return null;
     }
 
-    const propertiesData = await getPropertiesByManagerId(user.id);
-    const openTasksData = await getOpenTasksByManagerId(user.id);
+    const propertiesData = await Property.getPropertiesByManagerId(user.id);
+    const openTasksData = await Task.getOpenTasksByManagerId(user.id);
 
     return this.setState({
       properties: propertiesData.data,
@@ -70,7 +70,7 @@ class MgmtHome extends PureComponent {
     const queryString = `term=${task.name}&location=${property.street_address},${property.city},${property.state},${property.zip}`;
 
     try {
-      const data = await fetchYelpServices(queryString);
+      const data = await Yelp.fetchYelpServices(queryString);
 
       if (data.data.length === 0) {
         return this.setState({
@@ -124,7 +124,9 @@ class MgmtHome extends PureComponent {
     }
 
     try {
-      const data = await updateTask(task.resident.id, task.id, { status: activeUpdateSelected });
+      const data = await Task.updateTask(task.resident.id, task.id, {
+        status: activeUpdateSelected
+      });
       const updatedOpenTasks = openTasks;
       task.status = data.data.status;
       updatedOpenTasks[i] = task;

@@ -3,8 +3,8 @@ import './styles/global.scss';
 import firebase from './config/firebase-config';
 import DefaultLayout from './containers/DefaultLayout/DefaultLayout';
 import UserContext from './context/UserContext';
-import { getUserById } from './api/user';
-import { getTasksByUserId } from './api/task';
+import User from './api/user';
+import Task from './api/task';
 
 class App extends PureComponent {
   state = {
@@ -26,8 +26,8 @@ class App extends PureComponent {
       }
 
       try {
-        const userData = await getUserById(user.uid);
-        const tasksData = await getTasksByUserId(user.uid);
+        const userData = await User.getUserById(user.uid);
+        const tasksData = await Task.getTasksByUserId(user.uid);
 
         return this.setState({
           user: userData.data,

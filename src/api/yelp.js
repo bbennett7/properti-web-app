@@ -8,6 +8,6 @@ const fetchYelpServices = async queryString => {
   }
 };
 
-module.exports = {
+export default {
   fetchYelpServices
 };

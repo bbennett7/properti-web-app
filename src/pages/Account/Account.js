@@ -3,8 +3,8 @@ import styles from './Account.module.scss';
 import firebase from '../../config/firebase-config';
 import Button from '../../components/Button/Button';
 import UserContext from '../../context/UserContext';
-import { getProperties } from '../../api/property';
-import { updateUser, getUserById } from '../../api/user';
+import Property from '../../api/property';
+import User from '../../api/user';
 
 class Account extends PureComponent {
   state = {
@@ -23,7 +23,7 @@ class Account extends PureComponent {
 
   fetchData = async () => {
     try {
-      const data = await getProperties();
+      const data = await Property.getProperties();
 
       return this.setState({
         properties: data.data
@@ -123,8 +123,8 @@ class Account extends PureComponent {
     };
 
     try {
-      await updateUser(id, body);
-      const data = await getUserById(id);
+      await User.updateUser(id, body);
+      const data = await User.getUserById(id);
       this.context.updateUser(data.data);
     } catch (err) {
       this.setState({

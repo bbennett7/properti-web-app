@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './ResHome.module.scss';
 import { getTasks, createTask, createUserTask, deleteTask } from '../../api/task';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
@@ -230,6 +231,18 @@ class ResHome extends PureComponent {
 
     if (loading) {
       return <LoadingSpinner />;
+    }
+
+    if (!this.context.user.property) {
+      return (
+        <div className={styles.emptyContainer}>
+          <div className={styles.emptyText}>
+            You have not added your building to your profile yet. Please complete this step on
+            your&nbsp;<Link to={'/account'}>account page</Link>&nbsp; before creating tasks for your
+            unit.
+          </div>
+        </div>
+      );
     }
 
     return (

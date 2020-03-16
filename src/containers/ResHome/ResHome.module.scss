@@ -5,6 +5,26 @@
   align-items: center;
 }
 
+.emptyContainer {
+  width: 100%;
+  align-items: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 30px;
+}
+
+.emptyText {
+  display: inline;
+  font-family: 'Raleway';
+  margin: 20px 100px;
+}
+
+.emptyText a {
+  color: $pGold;
+  font-weight: bold;
+}
+
+
 .header, .subHeader {
   width: 100%;
   color: $pDarkBlue;

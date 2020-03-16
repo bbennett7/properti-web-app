@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ResHome.module.scss';
-import { getTasks, createTask, createUserTask, deleteTask } from '../../api/task';
+import { getTasks, createNewTask, createUserTask, deleteTask } from '../../api/task';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import UserContext from '../../context/UserContext';
 import { ReactComponent as Expand } from '../../assets/add.svg';
@@ -95,7 +95,7 @@ class ResHome extends PureComponent {
     try {
       let tId = taskId;
       if (newTaskName !== '') {
-        const data = await createTask({ name: newTaskName });
+        const data = await createNewTask({ name: newTaskName });
         tId = data.data.id;
       }
 

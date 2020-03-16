@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.button {
+    width: 255px;
+    height: 42px;
+    border-radius: 21px;
+    font-family: 'Raleway';
+    font-weight: 600;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px 0px;
+    box-shadow: 0 8px 6px -6px #aaa;
+}
+
+.darkBlue {
+    background: $pDarkBlue;
+    border: 2px solid $pDarkBlue;
+    color: $pGold;
+}
+
+.offWhite {
+    background: $pOffWhite;
+    border: 2px solid $pOffWhite;
+    color: $pDarkBlue;
+}
+
+

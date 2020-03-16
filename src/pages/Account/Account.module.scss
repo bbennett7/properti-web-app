@@ -1,0 +1,114 @@
+@import '../../styles/variables';
+
+.container {
+  width: 70%;
+  align-items: center;
+  margin: 20px 50px;
+}
+
+.header {
+  width: 100%;
+  color: $pDarkBlue;
+  font-size: 70px;
+  font-family: 'Baloo Chettan 2', cursive;
+  border-bottom: 1px solid $pDarkBlue;
+}
+
+.accountInfoWrapper {
+  flex-direction: row;
+  margin: 100px 50px 30px;
+  width: 100%;
+}
+
+.col {
+  width: 50%;
+  border-right: 1px solid $pDarkBlue;
+}
+
+.fieldTitle {
+  width: 100%;
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Baloo Chettan 2', cursive;
+}
+
+.fieldData {
+  width: 80%;
+  margin: 5px 30px;
+  color: $pBlack;
+  font-size: 16px;
+  font-family: 'Raleway';
+}
+
+.fieldData a {
+  color: $pGold;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.fieldData .form {
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.movedText {
+  font-family: 'Raleway';
+  font-size: 14px;
+  color: $pDarkBlue;
+  margin: 40px 30px 20px;
+  flex-direction: row;
+}
+
+.movedText div {
+  color: $pGold;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form {
+  width: 90%;
+  margin: 0px 30px;
+}
+
+.form, .form div {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  font-family: 'Raleway';
+  color: $pBlack;
+  flex-wrap: wrap;
+}
+
+.form label {
+  margin-right: 10px;
+}
+
+.form label, .form input {
+  margin-bottom: 10px;
+}
+
+.form input {
+  width: 40px;
+  padding-left: 3px;
+}
+
+.form button {
+  width: 80px;
+  background: $pDarkBlue;
+  color: $pOffWhite;
+  border-radius: 10px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.error {
+  text-align: center;
+  font-family: 'Raleway';
+  color: $pErrorRed;
+  width: 100%;
+  align-items: center;
+}
+

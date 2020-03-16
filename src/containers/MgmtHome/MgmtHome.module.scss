@@ -1,0 +1,193 @@
+@import '../../styles/variables';
+
+.container {
+  width: 100%;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  color: $pDarkBlue;
+  font-size: 30px;
+  font-family: 'Baloo Chettan 2', cursive;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filterTitle {
+  font-family: 'Baloo Chettan 2', cursive;
+  width: 100%;
+  color: $pDarkBlue;
+  font-size: 18px;
+}
+
+.filtersWrapper, .filterWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.filtersWrapper {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+
+.filterWrapper {
+  width: 45%;
+  margin-bottom: 5px;
+  font-family: 'Raleway';
+  font-size: 14px;
+}
+
+.header svg, .updateWrapper button {
+  cursor: pointer;
+}
+
+.accountInfoWrapper {
+  flex-direction: row;
+  margin: 100px 50px 30px;
+  width: 100%;
+}
+
+.col {
+  width: 50%;
+  min-width: 450px;
+  border-right: 1px solid $pDarkBlue;
+}
+
+.taskTitle {
+  width: 100%;
+  margin: 10px 0px;
+  color: $pDarkBlue;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Raleway';
+  flex-direction: row;
+  align-items: center;
+}
+
+.titleText {
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.smallIcon {
+  justify-self: flex-end;
+  cursor: pointer;
+  stroke: $pDarkBlue;
+  fill: $pDarkBlue;
+}
+
+.taskTitle .smallIcon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.taskData .smallIcon {
+  height: 15px;
+  width: 15px;
+  margin-left: 10px;
+}
+
+.dataLabel {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.taskData, .serviceData {
+  width: 90%;
+  margin: 5px 30px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  flex-direction: row;
+}
+
+.action {
+  margin: 5px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  flex-direction: row;
+}
+
+.actionsWrapper {
+  margin: 5px 30px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.actionsWrapper .action {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.action:hover {
+  color: $pDarkBlue;
+}
+
+.actionsWrapper * {
+  color: $pGold;
+  font-weight: bold;
+}
+
+.serviceTitle {
+  width: 100%;
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.serviceWrapper a {
+  color: $pGold;
+}
+
+.icon {
+  margin-right: 20.75px;
+  height: 32px;
+  width: 32px;
+  stroke: $pDarkBlue;
+}
+
+.icon * {
+  align-items: center;
+  stroke: $pDarkBlue;
+  height: 32px;
+  width: 32px;
+}
+
+.message {
+  margin: 30px 30px 10px;
+  color: $pDarkBlue;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Raleway';
+}
+
+.updateWrapper {
+  margin: 5px 30px;
+  color: $pBlack;
+  font-size: 14px;
+  font-family: 'Raleway';
+  width: 100%;
+}
+
+.updateWrapper select {
+  width: 200px;
+  margin-top: 5px;
+}
+
+.updateWrapper button {
+  width: 100px;
+  background: $pDarkBlue;
+  color: $pOffWhite;
+  margin-left: 20px;
+  border-radius: 10px;
+}

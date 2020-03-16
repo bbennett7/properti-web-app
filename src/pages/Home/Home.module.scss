@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.container {
+  width: 70%;
+  align-items: center;
+  margin: 20px 50px;
+}
+
+.header {
+  width: 100%;
+  color: $pDarkBlue;
+  font-size: 70px;
+  font-family: 'Baloo Chettan 2', cursive;
+  border-bottom: 1px solid $pDarkBlue;
+}

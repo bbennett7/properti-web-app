@@ -151,7 +151,7 @@ class ResHome extends PureComponent {
     });
   };
 
-  deleteTask = async event => {
+  deleteUserTask = async event => {
     event.preventDefault();
 
     try {
@@ -185,7 +185,7 @@ class ResHome extends PureComponent {
               onClick={this.toggleExpanded}
             />
             {t.status === 'Completed' ? null : (
-              <Trash className={styles.smallIcon} id={t.id} onClick={this.deleteTask} />
+              <Trash className={styles.smallIcon} id={t.id} onClick={this.deleteUserTask} />
             )}
           </div>
           {expandedTask !== t.id ? null : (

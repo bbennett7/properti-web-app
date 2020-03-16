@@ -63,7 +63,7 @@ class SignIn extends PureComponent {
         <div className={styles.authContainer}>
           <div className={styles.wrapper}>
             <img className={styles.logo} src={Logo} />
-            <div className={styles.title}>properti</div>
+            <div className={styles.title}>propertii</div>
 
             <form className={styles.form} onSubmit={this.handleOnSubmit}>
               <div className={styles.formRow}>

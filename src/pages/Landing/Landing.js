@@ -11,7 +11,7 @@ const Landing = () => {
       <div className={styles.authContainer}>
         <div className={styles.wrapper}>
           <img className={styles.logo} src={Logo} />
-          <div className={styles.title}>properti</div>
+          <div className={styles.title}>propertii</div>
 
           <Button
             path={'/signup'}

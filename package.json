@@ -14,6 +14,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-dropzone": "^10.2.2",
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
@@ -54,5 +55,7 @@
     "eslint-plugin-react": "^7.19.0",
     "prettier": "^1.19.1"
   },
-  "engines" : { "node" : "11.10.1" }
+  "engines": {
+    "node": "11.10.1"
+  }
 }

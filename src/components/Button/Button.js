@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
-const Button = ({ path, text, bgColor, onClick }) => {
+const Button = ({ path, text, bgColor, onClick, dataTestId }) => {
   const bgClass = styles[bgColor];
 
   if (path) {
     return (
-      <Link to={path} className={`${bgClass} ${styles.button}`}>
+      <Link to={path} data-test-id={dataTestId} className={`${bgClass} ${styles.button}`}>
         {text}
       </Link>
     );

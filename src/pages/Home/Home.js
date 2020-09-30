@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>Home</div>
+      <div className={styles.header} data-test-id="header" >Home</div>
       {userContext.user.account_type === 'Building Manager' ? <MgmtHome /> : <ResHome />}
     </div>
   );

@@ -20,6 +20,7 @@ const Landing = () => {
           />
 
           <Button
+            dataTestId={'signIn'}
             path={'/signin'}
             text={'Sign In'}
             bgColor={helpers.isMobile ? 'offWhite' : 'darkBlue'}
